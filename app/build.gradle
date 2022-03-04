@@ -6,6 +6,10 @@ plugins {
 android {
     compileSdk 32
 
+    buildFeatures {
+        dataBinding = true
+    }
+
     defaultConfig {
         applicationId "kr.co.smartsoft.serverapi_okhttp_20220305"
         minSdk 21
