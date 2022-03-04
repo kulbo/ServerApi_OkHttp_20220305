@@ -12,6 +12,20 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        setupEvents()
+        setValues()
+
+    }
+
+    fun setupEvents() {
+        binding.btnLogin.setOnClickListener {
+            val inputId = binding.edtId.text.toString()
+            val inputPw = binding.edtPassword.text.toString()
+
+        }
+    }
+
+    fun setValues() {
 
     }
 }
