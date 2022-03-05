@@ -7,6 +7,10 @@ import java.io.IOException
 
 class ServerUtil {
 
+//    서버유틸로 돌아온 응답을 => 액티비티에서 처리하도록 일처리 넘긱기
+    interface JsonResponseHandler {
+        fun onResponse( jsonObject: JSONObject )
+    }
 //    서버에 Request를 날리는 역할
 //    코틀린에서 static 에 해당하는 개념 conpanion object{  } 에 만들자
     companion object {
@@ -15,7 +19,10 @@ class ServerUtil {
         private val EMAIL = "email"
         private val PASSWORD = "password"
 //      로그인 기는 호출 함수
-        fun postRequestLogin(id:String, pw:String) {
+//      handler : 이 함수를 쓰는 화면에서 JSON 분석을 어떻게 /UI에서 어떻게
+//          - 처리 방안을 대입하려면 널 데입을 허용
+
+        fun postRequestLogin(id:String, pw:String, handler: JsonResponseHandler?) {
 //            Request 제작 -> 실제 호출 -> 서버의 응답을 화면에 전달
 //            제작 1) 어느 주소로(url)로 접근할 지? 서버 주소 + 기능 주소
             val urlString = "${BASE_URL}/user"
@@ -50,19 +57,8 @@ class ServerUtil {
 //                    JSONObject 객체로 응답본문 String을 변환해주면 한글이 복구됨.
 //                    => UI에서도 JSONObject를 이용해서 데이터 추출/실제 활용.
                     val jsonObj = JSONObject(bodyString)
-                    Log.d("서버스트림",jsonObj.toString())
-                    val code = jsonObj.getInt("code")
-                    Log.d("로그인 코드",code.toString())
-                    if (code == 200) {
-                        Log.d("로그인 시도", "성공")
-                        val dataObj = jsonObj.getJSONObject("data")
-                        val userObj = dataObj.getJSONObject("user")
-                        val nickname = userObj.getString("nick_name")
-                        Log.d("닉네임", nickname)
-                    } else {
-                        val message = jsonObj.getString("message")
-                        Log.d("메세지", message)
-                    }
+                    Log.d("서버응답",jsonObj.toString())
+                    handler?.onResponse(jsonObj)
                 }
 
             })
