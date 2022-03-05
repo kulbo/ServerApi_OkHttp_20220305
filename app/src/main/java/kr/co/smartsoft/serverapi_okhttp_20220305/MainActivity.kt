@@ -8,7 +8,7 @@ import kr.co.smartsoft.serverapi_okhttp_20220305.databinding.ActivityMainBinding
 import kr.co.smartsoft.serverapi_okhttp_20220305.utils.ServerUtil
 import org.json.JSONObject
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     lateinit var binding : ActivityMainBinding
 
@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun setupEvents() {
+    override fun setupEvents() {
         binding.btnLogin.setOnClickListener {
             val inputId = binding.edtId.text.toString()
             val inputPw = binding.edtPassword.text.toString()
@@ -33,14 +33,14 @@ class MainActivity : AppCompatActivity() {
                     val code = jsonObject.getInt("code")
                     if (code == 200) {
                         runOnUiThread {
-                            Toast.makeText(this@MainActivity, "로드인 성공", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(mContext, "로드인 성공", Toast.LENGTH_SHORT).show()
                         }
                     }
                     else {
                         val message = jsonObject.getString("message")
 //                        토스트 : UI조작. => 백그라운드에서 UI를 건드리면 위험한동작으로 간주하고 앱을 강제 종료
                         runOnUiThread {
-                            Toast.makeText(this@MainActivity, message, Toast.LENGTH_SHORT).show()
+                            Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show()
                         }
                     }
                 }
@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun setValues() {
+    override fun setValues() {
 
     }
 }
