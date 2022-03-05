@@ -21,7 +21,6 @@ class MainActivity : AppCompatActivity() {
         binding.btnLogin.setOnClickListener {
             val inputId = binding.edtId.text.toString()
             val inputPw = binding.edtPassword.text.toString()
-
         }
     }
 
