@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import kr.co.smartsoft.serverapi_okhttp_20220305.databinding.ActivitySignUpBinding
+import kr.co.smartsoft.serverapi_okhttp_20220305.utils.ServerUtil
+import org.json.JSONObject
 
 class SignUpActivity : BaseActivity() {
 
@@ -22,6 +24,12 @@ class SignUpActivity : BaseActivity() {
             val inputPw = binding.edtPassword.text.toString()
             val inputNickname = binding.edtNickname.text.toString()
 
+            ServerUtil.putRequestSignUp(inputEmail, inputPw, inputNickname, object : ServerUtil.JsonResponseHandler{
+                override fun onResponse(jsonObject: JSONObject) {
+
+                }
+
+            })
         }
     }
 
