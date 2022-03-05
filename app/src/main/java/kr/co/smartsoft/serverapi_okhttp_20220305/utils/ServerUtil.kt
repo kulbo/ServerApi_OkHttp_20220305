@@ -1,7 +1,8 @@
 package kr.co.smartsoft.serverapi_okhttp_20220305.utils
 
-import okhttp3.FormBody
-import okhttp3.Request
+import android.util.Log
+import okhttp3.*
+import java.io.IOException
 
 class ServerUtil {
 
@@ -27,6 +28,29 @@ class ServerUtil {
                 .url(urlString)
                 .post(formData)
                 .build()
+//          종합한 Request로 실제 호출을 해줘야
+//          실제 호출 : 앱이 클라이언트로써 동작 > OKHttpClient 클래스
+            val client = OkHttpClient()
+//            OkHttpClient 객체를 이용 > 서버에 로그인 기능 실제 호출
+//            => 서버에 다녀와서 할 일을 등록 : enqueue(Callback)
+            client.newCall(request).enqueue( object : Callback{
+
+                override fun onFailure(call: Call, e: IOException) {
+//                실패 : 서버 연결 자체를 실패. 응답이 오지 않았다.
+//                ex. 인터넷 끊김 등
+
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+//                    어떤 내용이던, 응답 자체는 잘 들어온 경우(그 내용은 성공/실패 일 수 있다)
+//                    응답 : reponse 변수 > 응답의 본문(body) 만 가져온다.
+                    val bodyString = response.body!!.string()   // toString() 아님!
+
+                    Log.d("서버스트리",bodyString)
+
+                }
+
+            })
 
         }
 
