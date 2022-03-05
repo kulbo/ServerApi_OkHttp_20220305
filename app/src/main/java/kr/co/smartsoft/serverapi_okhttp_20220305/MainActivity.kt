@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import kr.co.smartsoft.serverapi_okhttp_20220305.databinding.ActivityMainBinding
+import kr.co.smartsoft.serverapi_okhttp_20220305.utils.ServerUtil
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,6 +22,8 @@ class MainActivity : AppCompatActivity() {
         binding.btnLogin.setOnClickListener {
             val inputId = binding.edtId.text.toString()
             val inputPw = binding.edtPassword.text.toString()
+
+            ServerUtil.postRequestLogin(inputId, inputPw)
         }
     }
 

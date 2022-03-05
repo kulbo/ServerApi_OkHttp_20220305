@@ -2,6 +2,7 @@ package kr.co.smartsoft.serverapi_okhttp_20220305.utils
 
 import android.util.Log
 import okhttp3.*
+import org.json.JSONObject
 import java.io.IOException
 
 class ServerUtil {
@@ -45,8 +46,11 @@ class ServerUtil {
 //                    어떤 내용이던, 응답 자체는 잘 들어온 경우(그 내용은 성공/실패 일 수 있다)
 //                    응답 : reponse 변수 > 응답의 본문(body) 만 가져온다.
                     val bodyString = response.body!!.string()   // toString() 아님!
-
-                    Log.d("서버스트리",bodyString)
+//                    응답의 본문을 String으로 변환하면 JSON Encoding 적용된 상태.
+//                    JSONObject 객체로 응답본문 String을 변환해주면 한글이 복구됨.
+//                    => UI에서도 JSONObject를 이용해서 데이터 추출/실제 활용.
+                    val jsonObj = JSONObject(bodyString)
+                    Log.d("서버스트리",jsonObj.toString())
 
                 }
 
