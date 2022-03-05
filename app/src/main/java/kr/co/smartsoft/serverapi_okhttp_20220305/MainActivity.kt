@@ -38,8 +38,11 @@ class MainActivity : BaseActivity() {
 
                     val code = jsonObject.getInt("code")
                     if (code == 200) {
+                        val dataObj = jsonObject.getJSONObject("data")
+                        val userObj = dataObj.getJSONObject("user")
+                        val nickname = userObj.getString("nick_name")
                         runOnUiThread {
-                            Toast.makeText(mContext, "로드인 성공", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(mContext, "${nickname}님 로그인 되었습니다.", Toast.LENGTH_SHORT).show()
                         }
                     }
                     else {
