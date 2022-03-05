@@ -50,8 +50,15 @@ class ServerUtil {
 //                    JSONObject 객체로 응답본문 String을 변환해주면 한글이 복구됨.
 //                    => UI에서도 JSONObject를 이용해서 데이터 추출/실제 활용.
                     val jsonObj = JSONObject(bodyString)
-                    Log.d("서버스트리",jsonObj.toString())
-
+                    Log.d("서버스트림",jsonObj.toString())
+                    val code = jsonObj.getInt("code")
+                    Log.d("로그인 코드",code.toString())
+                    if (code == 200) {
+                        Log.d("로그인 시도", "성공")
+                    } else {
+                        val message = jsonObj.getString("message")
+                        Log.d("메세지", message)
+                    }
                 }
 
             })
