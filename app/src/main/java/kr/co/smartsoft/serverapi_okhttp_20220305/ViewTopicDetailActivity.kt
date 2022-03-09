@@ -27,12 +27,17 @@ class ViewTopicDetailActivity : BaseActivity() {
     }
 
     override fun setValues() {
+        setTopicDataToUi()
+
+        getTopicDetailFromServer()
+
+    }
+
+    fun setTopicDataToUi() {
         binding.txtTitle.text = mTopicData.title
         Glide.with(mContext).load(mTopicData.imageURL).into(binding.imgTopicBackground)
 
-        getTopicDetailFromServer()
     }
-
     fun getTopicDetailFromServer() {
 
         ServerUtil.getRequestTopicDetail(mContext, mTopicData.id, object :ServerUtil.JsonResponseHandler{
@@ -43,6 +48,10 @@ class ViewTopicDetailActivity : BaseActivity() {
                 val topicData = TopicData.getTopicDataFromJson(topicObj)
 //                변환된 객체를 mTopicData로 다시 대입. => UI 반영
                 mTopicData = topicData
+
+                runOnUiThread {
+                    setTopicDataToUi()
+                }
             }
 
         })
