@@ -2,7 +2,9 @@ package kr.co.smartsoft.serverapi_okhttp_20220305
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import kr.co.smartsoft.serverapi_okhttp_20220305.databinding.ActivitySignUpBinding
 import kr.co.smartsoft.serverapi_okhttp_20220305.utils.ServerUtil
@@ -20,8 +22,16 @@ class SignUpActivity : BaseActivity() {
     }
 
     override fun setupEvents() {
-        
-        binding.btnEmailCheck.setOnClickListener { 
+
+        binding.edtEmail.addTextChangedListener {
+//        내용이 한글자라도 바뀌면, 무조건 재검사 요구 문장.
+            binding.txtEmailCheckResult.text = "중복 확인을 해주세요"
+        }
+        binding.edtNickname.addTextChangedListener {
+//        내용이 한글자라도 바뀌면, 무조건 재검사 요구 문장.
+            binding.txtNicknameCheckResult.text = "중복 확인을 해주세요"
+        }
+        binding.btnEmailCheck.setOnClickListener {
 //            입력 이메일 값 추출
             val inputEmail = binding.edtEmail.text.toString()
 
@@ -37,6 +47,32 @@ class SignUpActivity : BaseActivity() {
                             }
                             else -> {
                                 binding.txtEmailCheckResult.text = "다른 이메일로 다시 검사해주세요"
+                            }
+                        }
+                    }
+
+
+                }
+
+            })
+
+        }
+        binding.btnNicknameCheck.setOnClickListener {
+//            입력 이메일 값 추출
+            val inputNickname = binding.edtNickname.text.toString()
+
+//            서버의 중복확인 기능(/User_check - Get) Api 활용 => ServerUtil에 함수 추가, 가져다 활용
+//            그 응답 code값에 따라 다른 문구 배치
+            ServerUtil.getRequestDuplicatedCheck("NICK_NAME", inputNickname, object : ServerUtil.JsonResponseHandler {
+                override fun onResponse(jsonObject: JSONObject) {
+                    val code = jsonObject.getInt("code")
+                    runOnUiThread {
+                        when(code) {
+                            200 -> {
+                                binding.txtNicknameCheckResult.text = "사용해도 좋은 닉네임입니다."
+                            }
+                            else -> {
+                                binding.txtNicknameCheckResult.text = "다른 닉네임을 다시 검사해주세요"
                             }
                         }
                     }
