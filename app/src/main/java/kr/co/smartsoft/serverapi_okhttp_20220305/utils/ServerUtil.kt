@@ -160,5 +160,32 @@ class ServerUtil {
 
             })
         }
+
+        fun getRequestMainInfo(context:Context,  handler: JsonResponseHandler? ) {
+            val urlBuilder = "${BASE_URL}/v2/main_info".toHttpUrlOrNull()!!.newBuilder()
+                .build() // 쿼리파라미터를 담을게 없다.
+
+            val urlString = urlBuilder.toString()
+
+            val request = Request.Builder()
+                .url(urlBuilder)
+                .get()
+                .header("X-Http-Token", ContextUtil.getToken(context))
+                .build()
+
+            val client = OkHttpClient()
+            client.newCall(request).enqueue(object :Callback {
+                override fun onFailure(call: Call, e: IOException) {
+
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+                    val jsonObj = JSONObject(response.body!!.string() )
+                    Log.d("서버응답", jsonObj.toString())
+                    handler?.onResponse(jsonObj)
+                }
+
+            })
+        }
     }
 }
