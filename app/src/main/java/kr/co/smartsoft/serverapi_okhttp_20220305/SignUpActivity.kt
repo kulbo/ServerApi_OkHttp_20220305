@@ -23,6 +23,9 @@ class SignUpActivity : BaseActivity() {
 
     override fun setupEvents() {
 
+//        만약 이메일 /닉네임 중복검사를 통과하지 못한 상태라면
+//        토스트로 "이메일 중복검사를 통과해야 합니다." 등의 문구만 출력 가입 진행 x
+//        hint) 진행상황이 아니라면 return 처리하면 함수 종료
         binding.edtEmail.addTextChangedListener {
 //        내용이 한글자라도 바뀌면, 무조건 재검사 요구 문장.
             binding.txtEmailCheckResult.text = "중복 확인을 해주세요"
