@@ -2,6 +2,7 @@ package kr.co.smartsoft.serverapi_okhttp_20220305
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import kr.co.smartsoft.serverapi_okhttp_20220305.databinding.ActivityLoginBinding
@@ -22,6 +23,11 @@ class LoginActivity : BaseActivity() {
     }
 
     override fun setupEvents() {
+//        체크박스
+        binding.autoLoginCheckbox.setOnCheckedChangeListener { compoundButton, isChecked ->
+            Log.d("체크값변경", "${isChecked}로 변경됨")
+        }
+
         binding.btnSignUp.setOnClickListener {
 //            단순 화면 이동
             val myIntent = Intent(mContext, SignUpActivity::class.java)
