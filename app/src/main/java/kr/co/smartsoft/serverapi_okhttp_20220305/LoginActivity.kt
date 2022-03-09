@@ -26,6 +26,7 @@ class LoginActivity : BaseActivity() {
 //        체크박스
         binding.autoLoginCheckbox.setOnCheckedChangeListener { compoundButton, isChecked ->
             Log.d("체크값변경", "${isChecked}로 변경됨")
+            ContextUtil.setAutoLogIn(mContext, isChecked)
         }
 
         binding.btnSignUp.setOnClickListener {

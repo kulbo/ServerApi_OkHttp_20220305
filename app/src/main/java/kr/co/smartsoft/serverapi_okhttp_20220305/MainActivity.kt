@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import kr.co.smartsoft.serverapi_okhttp_20220305.databinding.ActivityMainBinding
+import kr.co.smartsoft.serverapi_okhttp_20220305.utils.ServerUtil
 
 class MainActivity : BaseActivity() {
     lateinit var binding:ActivityMainBinding
@@ -20,7 +21,8 @@ class MainActivity : BaseActivity() {
     }
 
     override fun setValues() {
-
+//      화면에
+        ServerUtil.
     }
 
 }

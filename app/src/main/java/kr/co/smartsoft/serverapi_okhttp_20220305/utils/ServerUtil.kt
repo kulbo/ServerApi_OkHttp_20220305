@@ -1,5 +1,6 @@
 package kr.co.smartsoft.serverapi_okhttp_20220305.utils
 
+import android.content.Context
 import android.util.Log
 import okhttp3.*
 import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
@@ -126,6 +127,38 @@ class ServerUtil {
 
             }
             )
+        }
+
+//      연습 : 내 정보 불러오기 (/user_info - GET)
+//      토큰은 ContextUtil 클래스에서 getToken 함수로 꺼내올 수 있다.
+//      토큰값
+//      메모장에 접근할 수 있게, Context 변수 하나를 미리 받아두자.
+
+        fun getRequestMyInfo(context:Context,  handler: JsonResponseHandler? ) {
+            val urlBuilder = "${BASE_URL}/user_info".toHttpUrlOrNull()!!.newBuilder()
+                .build() // 쿼리파아미터를 담을게 없다.
+
+            val urlString = urlBuilder.toString()
+
+            val request = Request.Builder()
+                .url(urlBuilder)
+                .get()
+                .header("X-Http-Token", ContextUtil.getToken(context))
+                .build()
+
+            val client = OkHttpClient()
+            client.newCall(request).enqueue(object :Callback {
+                override fun onFailure(call: Call, e: IOException) {
+
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+                    val jsonObj = JSONObject(response.body!!.string() )
+                    Log.d("서버응답", jsonObj.toString())
+                    handler?.onResponse(jsonObj)
+                }
+
+            })
         }
     }
 }
