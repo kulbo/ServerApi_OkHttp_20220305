@@ -48,6 +48,17 @@ class MainActivity : BaseActivity() {
                     val topicObj = topicsArr.getJSONObject(i)
 
                     Log.d("받아낸 주제", topicObj.toString())
+
+//                    TopicData 변수 생성 => 멤버변수에 topicObj가 들고 있는 값들을 대입.
+                    val topicData = TopicData()
+                    topicData.id = topicObj.getInt("id")
+                    topicData.title = topicObj.getString("title")
+                    topicData.imageURL = topicObj.getString("img_utl")
+                    topicData.replyCount = topicObj.getInt("reply_count")
+
+//                    완성된 TopicData 객체를 목록에 추가.
+                    mTopicList.add(topicData)
+
                 }
             }
 
