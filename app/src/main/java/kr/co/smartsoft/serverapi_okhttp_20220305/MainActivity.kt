@@ -33,6 +33,9 @@ class MainActivity : BaseActivity() {
     override fun setupEvents() {
         binding.topicListView.setOnItemClickListener { adapterView, view, position, l ->
             val clickedTopic = mTopicList[position]
+            val myIntent = Intent(mContext, ViewTopicDetailActivity::class.java)
+            myIntent.putExtra("topic", clickedTopic)
+            startActivity(myIntent)
 
         }
         binding.btnLogout.setOnClickListener {
