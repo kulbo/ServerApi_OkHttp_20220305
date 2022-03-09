@@ -2,6 +2,7 @@ package kr.co.smartsoft.serverapi_okhttp_20220305
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.databinding.DataBindingUtil
 import kr.co.smartsoft.serverapi_okhttp_20220305.databinding.ActivityMainBinding
 import kr.co.smartsoft.serverapi_okhttp_20220305.datas.TopicData
@@ -39,6 +40,15 @@ class MainActivity : BaseActivity() {
                 val topicsArr = dataObj.getJSONArray("topics")
 
 //                topicsArr 내부를 하나씩 추출 (JSonobjct{}) => TopicData
+
+//                JSONArray 는 for-each 문법 지원 X. (차후 ArrayList의 for-each 활용 예정)
+//                for (int i=0; i<배열.length; i++)
+                for (i in 0 until topicsArr.length()) {
+//                    [] => {}, {}, {}, ... 순서에 맞는 {}를 변수에 담자.
+                    val topicObj = topicsArr.getJSONObject(i)
+
+                    Log.d("받아낸 주제", topicObj.toString())
+                }
             }
 
         })
