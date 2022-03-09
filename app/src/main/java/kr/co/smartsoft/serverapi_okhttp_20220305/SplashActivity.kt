@@ -1,5 +1,6 @@
 package kr.co.smartsoft.serverapi_okhttp_20220305
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -23,8 +24,6 @@ class SplashActivity : BaseActivity() {
     override fun setValues() {
 
 //        2.5초가 지나기 전에 미리 사용자 정보 조회 시도(토큰 유효성 정보)
-
-//        2.5초 지나면 -> 자동로그인을 해도 되는지 -> 상황에 맞는 화면으로 이동
         val userAutoLogin = ContextUtil.getAutoLogin(mContext)
 //          2) 로그인 시에 받아낸 토큰값이 지금도 유효한지?
         var isTokenOk = false   // 검사를 통과하면 true로 변경 예정.
@@ -42,17 +41,27 @@ class SplashActivity : BaseActivity() {
 
         })
 
+//        2.5초 지나면 -> 자동로그인을 해도 되는지 -> 상황에 맞는 화면으로 이동
+
         val myHandler = Handler(Looper.getMainLooper())
 
         myHandler.postDelayed({
+
+            val userAutoLogin = ContextUtil.getAutoLogin(mContext)
 //          자동로그인을 해도 되는가?
 //          1) 사용자가 자동로그인 의사를 OK 했는지?
-//            if () {
-////            둘다 OK라면 바로 메인화면으로
-//            }
-//            else {
-////                아니라면, 로그인 화면으로
-//            }
+            val myIntent : Intent
+            if (userAutoLogin && isTokenOk ) {
+//            둘다 OK라면 바로 메인화면으로
+                myIntent = Intent(mContext, MainActivity::class.java)
+            }
+            else {
+//                아니라면, 로그인 화면으로
+                myIntent = Intent(mContext, LoginActivity::class.java)
+            }
+            startActivity(myIntent)
+            finish()
+
         },2500)
     }
 
