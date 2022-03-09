@@ -36,7 +36,7 @@ class MainActivity : BaseActivity() {
             val myIntent = Intent(mContext, ViewTopicDetailActivity::class.java)
             myIntent.putExtra("topic", clickedTopic)
             startActivity(myIntent)
-
+            finish()
         }
         binding.btnLogout.setOnClickListener {
 //            경고창 > 확인시 로그아웃

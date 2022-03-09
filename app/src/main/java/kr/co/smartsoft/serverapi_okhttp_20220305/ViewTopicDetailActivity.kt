@@ -6,6 +6,7 @@ import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import kr.co.smartsoft.serverapi_okhttp_20220305.databinding.ActivityViewTopicDetailBinding
 import kr.co.smartsoft.serverapi_okhttp_20220305.datas.TopicData
+import kr.co.smartsoft.serverapi_okhttp_20220305.utils.ServerUtil
 
 class ViewTopicDetailActivity : BaseActivity() {
 
@@ -27,6 +28,12 @@ class ViewTopicDetailActivity : BaseActivity() {
     override fun setValues() {
         binding.txtTitle.text = mTopicData.title
         Glide.with(mContext).load(mTopicData.imageURL).into(binding.imgTopicBackground)
+
+        getTopicDetailFromServer()
     }
 
+    fun getTopicDetailFromServer() {
+
+        // ServerUtil.
+    }
 }
