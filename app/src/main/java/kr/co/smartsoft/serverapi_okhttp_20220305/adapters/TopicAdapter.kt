@@ -41,6 +41,6 @@ class TopicAdapter(
 
         txtReplyCount.text = "${data.replyCount}명 참여중!"
 
-ㅅ        return row
+        return row
     }
 }
