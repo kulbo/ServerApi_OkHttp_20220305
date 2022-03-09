@@ -168,7 +168,7 @@ class ServerUtil {
             val urlString = urlBuilder.toString()
 
             val request = Request.Builder()
-                .url(urlBuilder)
+                .url(urlString)
                 .get()
                 .header("X-Http-Token", ContextUtil.getToken(context))
                 .build()
