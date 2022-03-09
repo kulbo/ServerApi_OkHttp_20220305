@@ -10,7 +10,8 @@ class ContextUtil {
         private val prefName = "OkHttpPracticePref"
 
 //        저장할 데이터의 항목명도 변수로 만들어두자.
-        val TOKEN = "TOKEN"
+        private val TOKEN = "TOKEN"
+        private val AUTO_LOGIN = "AUTO_LOGIN"
 
 //        데이터를 저장 함수(setter) / 조회 함수(getter) 별개로 작성
 //        TOKEN 항목에 저장 => token 항목 조회? 데이터 인식 X 대소문자까지 동일해야함.
@@ -26,6 +27,16 @@ class ContextUtil {
         fun getToken(context: Context) : String {
             val pref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE)
             return pref.getString(TOKEN, "")!!
+        }
+
+        fun setAutoLogIn(context: Context, isAuto:Boolean) {
+            val pref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE)
+            pref.edit().putBoolean(AUTO_LOGIN, isAuto).apply()
+        }
+
+        fun getAutoLogin(context: Context) : Boolean {
+            val pref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE)
+            return pref.getBoolean(AUTO_LOGIN, true)
         }
     }
 }
