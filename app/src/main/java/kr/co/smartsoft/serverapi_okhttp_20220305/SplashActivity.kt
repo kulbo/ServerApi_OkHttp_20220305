@@ -27,6 +27,7 @@ class SplashActivity : BaseActivity() {
 //          1) 사용자가 자동로그인 의사를 OK 했는지?
 //          2) 로그인 시에 받아낸 토큰값이 지금도 유효한지?
 
+
             if () {
 
             }
