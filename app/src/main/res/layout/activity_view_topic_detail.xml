@@ -44,8 +44,8 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
+                        android:gravity="center"
+                        android:orientation="vertical">
                         <TextView
                             android:id="@+id/txtSide1"
                             android:layout_width="wrap_content"
@@ -75,7 +75,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:orientation="horizontal">
+                        android:orientation="vertical">
                         <TextView
                             android:id="@+id/txtSide2"
                             android:layout_width="wrap_content"
