@@ -25,12 +25,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:background="@color/dark_gray"
+            android:background="@drawable/dark_gray_border_box"
             android:text="답금 0"/>
 
         <TextView
@@ -42,13 +43,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:background="@color/dark_gray"
+            android:background="@drawable/dark_gray_border_box"
             android:text="좋아요 0"/>
         <TextView
+            android:layout_marginStart="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:background="@color/dark_gray"
+            android:background="@drawable/dark_gray_border_box"
             android:text="실어요 0"/>
 
     </LinearLayout>
