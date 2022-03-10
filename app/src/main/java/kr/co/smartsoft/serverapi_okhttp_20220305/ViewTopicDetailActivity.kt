@@ -83,7 +83,25 @@ class ViewTopicDetailActivity : BaseActivity() {
         binding.txtVoteCount1.text = "${mTopicData.sideList[0].voteCount}표"
         binding.txtVoteCount2.text = "${mTopicData.sideList[1].voteCount}표"
 
-
+//        내가 선택한 진영이 있을 때 (투표 해놨을때)
+//        이미 투표한 진영은 못누를게 막아두자. (enabled = false)
+        if (mTopicData.mySelectedSide != null) {
+//            첫번째 진영을 투표했는지
+//            두번째 진영을 투표했는지
+            if (mTopicData.mySelectedSide!!.id == mTopicData.sideList[0].id) {
+//                첫 진영에 투표 한 경우
+                binding.btnVote1.text = "투표 취소"
+                binding.btnVote2.text = "다시 투표"
+            }
+            else {
+                binding.btnVote1.text = "다시 투표"
+                binding.btnVote2.text = "투표 취소"
+            }
+        }
+        else {
+            binding.btnVote1.text = "투표 하기"
+            binding.btnVote2.text = "투표 하기"
+        }
     }
     fun getTopicDetailFromServer() {
 
