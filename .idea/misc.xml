@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/tech/kotlin/src/ServerApi_OkHttp_20220305/app/src/main/res/drawable/dark_gray_border_box.xml" value="0.2675" />
         <entry key="..\:/tech/kotlin/src/ServerApi_OkHttp_20220305/app/src/main/res/layout/activity_login.xml" value="0.2625" />
         <entry key="..\:/tech/kotlin/src/ServerApi_OkHttp_20220305/app/src/main/res/layout/activity_main.xml" value="0.36822916666666666" />
         <entry key="..\:/tech/kotlin/src/ServerApi_OkHttp_20220305/app/src/main/res/layout/activity_sign_up.xml" value="0.2625" />
