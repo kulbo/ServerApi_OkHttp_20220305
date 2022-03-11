@@ -27,7 +27,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/txtReplyCount"
+        android:id="@+id/txtReplyContent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="댓글의 내용"
