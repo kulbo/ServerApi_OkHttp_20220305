@@ -248,33 +248,68 @@ class ServerUtil {
 
         }
 
-//        fun postRequestVote(context: Context, sideId:Int, handler: JsonResponseHandler?) {
-//            val urlString = "${BASE_URL}/topic_vote"
-//            val formData = FormBody.Builder()
-//                .add("side_id", sideId.toString())
-//                .build()
-//            val request = Request.Builder()
-//                .url(urlString)
-//                .post(formData)
-//                .header("X-Http-Token", ContextUtil.getToken(context))
-//                .build()
-//            val client = OkHttpClient()
-//            client.newCall(request).enqueue( object : Callback{
-//
-//                override fun onFailure(call: Call, e: IOException) {
-//
-//                }
-//
-//                override fun onResponse(call: Call, response: Response) {
-//                    val bodyString = response.body!!.string()   // toString() 아님!
-//                    val jsonObj = JSONObject(bodyString)
-//                    Log.d("서버응답",jsonObj.toString())
-//                    handler?.onResponse(jsonObj)
-//                }
-//
-//            })
-//
-//        }
+        fun postRequestTopicReply(context:Context, topicId:Int, content:String, handler: JsonResponseHandler?) {
+            //            Request 제작 -> 실제 호출 -> 서버의 응답을 화면에 전달
+            //            제작 1) 어느 주소로(url)로 접근할 지? 서버 주소 + 기능 주소
+            val urlString = "${BASE_URL}/topic_reply"
+            //            제작 2 파라미터 담아주기 => 어떤 이름표/어느 공간에
+            val formData = FormBody.Builder()
+                .add("topic_id", topicId.toString())
+                .add("content", content)
+                .build()
+            //            제작 3) 모든 Request 정보를 종합한 객체 생성.(어느 주소로 + 어느 메쏘드로 + 어떤 파라미터를)
+            val request = Request.Builder()
+                .url(urlString)
+                .post(formData)
+                .header("X-Http-Token", ContextUtil.getToken(context))
+                .build()
+            val client = OkHttpClient()
+            client.newCall(request).enqueue( object : Callback{
+
+                override fun onFailure(call: Call, e: IOException) {
+
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+                    val bodyString = response.body!!.string()   // toString() 아님!
+                    val jsonObj = JSONObject(bodyString)
+                    Log.d("서버응답",jsonObj.toString())
+                    handler?.onResponse(jsonObj)
+                }
+
+            })
+
+        }
+
+
+        fun postRequestReplyLike(context: Context, replyId:Int, isLike:Boolean, handler: JsonResponseHandler?) {
+            val urlString = "${BASE_URL}/topic_reply_like"
+            val formData = FormBody.Builder()
+                .add("side_id", replyId.toString())
+                .add("is_like", isLike.toString())
+                .build()
+            val request = Request.Builder()
+                .url(urlString)
+                .post(formData)
+                .header("X-Http-Token", ContextUtil.getToken(context))
+                .build()
+            val client = OkHttpClient()
+            client.newCall(request).enqueue( object : Callback{
+
+                override fun onFailure(call: Call, e: IOException) {
+
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+                    val bodyString = response.body!!.string()   // toString() 아님!
+                    val jsonObj = JSONObject(bodyString)
+                    Log.d("서버응답",jsonObj.toString())
+                    handler?.onResponse(jsonObj)
+                }
+
+            })
+
+        }
 
     }
 }

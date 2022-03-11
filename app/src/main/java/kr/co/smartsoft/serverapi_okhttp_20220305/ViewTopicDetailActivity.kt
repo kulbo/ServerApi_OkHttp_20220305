@@ -5,7 +5,9 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
+import kr.co.smartsoft.serverapi_okhttp_20220305.adapters.ReplyAdapter
 import kr.co.smartsoft.serverapi_okhttp_20220305.databinding.ActivityViewTopicDetailBinding
+import kr.co.smartsoft.serverapi_okhttp_20220305.datas.ReplyData
 import kr.co.smartsoft.serverapi_okhttp_20220305.datas.TopicData
 import kr.co.smartsoft.serverapi_okhttp_20220305.utils.ServerUtil
 import org.json.JSONObject
@@ -15,6 +17,10 @@ class ViewTopicDetailActivity : BaseActivity() {
     lateinit var binding:ActivityViewTopicDetailBinding
 
     lateinit var mTopicData : TopicData
+
+    val mReplyList = ArrayList<ReplyData>()
+
+    lateinit var mAdapter: ReplyAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -120,5 +126,11 @@ class ViewTopicDetailActivity : BaseActivity() {
             }
 
         })
+    }
+//    이 화면에 들어올때 마다, 댓들 목록 새로고침
+    override fun onResume() {
+        super.onResume()
+
+        getTopicDetailFromServer()
     }
 }
