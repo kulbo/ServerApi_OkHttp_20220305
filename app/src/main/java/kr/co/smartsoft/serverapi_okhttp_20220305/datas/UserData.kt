@@ -13,7 +13,7 @@ class UserData {
 
             userData.id = jsonObj.getInt("id")
             userData.email = jsonObj.getString("email")
-            userData.nickname = jsonObj.getString("nickname")
+            userData.nickname = jsonObj.getString("nick_name")
 
             return userData
         }

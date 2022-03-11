@@ -71,6 +71,9 @@ class ViewTopicDetailActivity : BaseActivity() {
     }
 
     override fun setValues() {
+        mAdapter = ReplyAdapter(mContext, R.layout.replay_list_item, mReplyList)
+        binding.replyListView.adapter = mAdapter
+
         setTopicDataToUi()
 
         getTopicDetailFromServer()
@@ -134,7 +137,9 @@ class ViewTopicDetailActivity : BaseActivity() {
 
                 }
 //                서버의 동작으로 어댑터 세팅보다 늦게 끝날수 있다.(notifyDataSetChanged)
-
+                runOnUiThread {
+                    mAdapter.notifyDataSetChanged()
+                }
             }
 
         })
