@@ -22,7 +22,7 @@ class ReplyData(
             replyData.content = jsonObj.getString("content")
             replyData.writer = UserData.getSideDataFromJson(jsonObj.getJSONObject("user"))
 
-//            replyData.selectedSide = SideData.getSideDataFromJson(jsonObj.getJSONObject("selected_side"))
+            replyData.selectedSide = SideData.getSideDataFromJson(jsonObj.getJSONObject("selected_side"))
 
             return replyData
         }
