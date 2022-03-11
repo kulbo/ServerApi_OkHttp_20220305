@@ -71,9 +71,10 @@ class ViewTopicDetailActivity : BaseActivity() {
     }
 
     override fun setValues() {
+//***        뎃글 표시의 마지막 부분
         mAdapter = ReplyAdapter(mContext, R.layout.replay_list_item, mReplyList)
         binding.replyListView.adapter = mAdapter
-
+//***
         setTopicDataToUi()
 
         getTopicDetailFromServer()
@@ -127,6 +128,7 @@ class ViewTopicDetailActivity : BaseActivity() {
                     setTopicDataToUi()
                 }
 
+//***            뎃글 표시 데이터 작업 마지막부분
 //                topicObj 내부에는 replies 라는 뎃글 목록 JSONArray 도 들어있아.
                 val repliesArr = topicObj.getJSONArray("replies")
 
@@ -140,6 +142,7 @@ class ViewTopicDetailActivity : BaseActivity() {
                 runOnUiThread {
                     mAdapter.notifyDataSetChanged()
                 }
+//***
             }
 
         })
