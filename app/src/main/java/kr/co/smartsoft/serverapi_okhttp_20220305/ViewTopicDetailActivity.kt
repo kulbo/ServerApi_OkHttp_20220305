@@ -123,6 +123,18 @@ class ViewTopicDetailActivity : BaseActivity() {
                 runOnUiThread {
                     setTopicDataToUi()
                 }
+
+//                topicObj 내부에는 replies 라는 뎃글 목록 JSONArray 도 들어있아.
+                val repliesArr = topicObj.getJSONArray("replies")
+
+                for(i in 0 until repliesArr.length()) {
+                    val replyObj = repliesArr.getJSONObject(i)
+
+                    mReplyList.add(ReplyData.getReplyDataFromJson(replyObj))
+
+                }
+//                서버의 동작으로 어댑터 세팅보다 늦게 끝날수 있다.(notifyDataSetChanged)
+
             }
 
         })

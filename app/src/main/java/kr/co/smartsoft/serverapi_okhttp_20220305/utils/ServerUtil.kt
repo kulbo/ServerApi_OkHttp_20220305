@@ -190,6 +190,7 @@ class ServerUtil {
 
         fun getRequestTopicDetail(context:Context,topicId : Int,  handler: JsonResponseHandler? ) {
             val urlBuilder = "${BASE_URL}/topic/${topicId}".toHttpUrlOrNull()!!.newBuilder()
+                .addEncodedQueryParameter("order_type", "NEW")
                 .build() // 쿼리파라미터를 담을게 없다.
 
             val urlString = urlBuilder.toString()
