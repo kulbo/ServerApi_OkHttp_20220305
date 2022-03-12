@@ -1,7 +1,6 @@
 package kr.co.smartsoft.serverapi_okhttp_20220305
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
@@ -84,7 +83,7 @@ class ViewTopicDetailActivity : BaseActivity() {
 
     override fun setValues() {
 //***        뎃글 표시의 마지막 부분
-        mAdapter = ReplyAdapter(mContext, R.layout.replay_list_item, mReplyList)
+        mAdapter = ReplyAdapter(mContext, R.layout.reply_list_item, mReplyList)
         binding.replyListView.adapter = mAdapter
 //***
         setTopicDataToUi()

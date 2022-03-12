@@ -8,7 +8,6 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import kr.co.smartsoft.serverapi_okhttp_20220305.R
 import kr.co.smartsoft.serverapi_okhttp_20220305.datas.ReplyData
-import org.w3c.dom.Text
 
 class ReplyAdapter(
     val mContext : Context,
@@ -20,7 +19,7 @@ class ReplyAdapter(
 
         var tempRow = convertView
         if (tempRow == null) {
-            tempRow = LayoutInflater.from(mContext).inflate(R.layout.replay_list_item, null)
+            tempRow = LayoutInflater.from(mContext).inflate(R.layout.reply_list_item, null)
         }
         val row = tempRow!!
 
@@ -30,9 +29,17 @@ class ReplyAdapter(
         val txtWriteNickname = row.findViewById<TextView>(R.id.txtWriterNickname)
         val txtReplyContent = row.findViewById<TextView>(R.id.txtReplyContent)
 
+        val txtReReplyCount = row.findViewById<TextView>(R.id.txtReReplyCount)
+        val txtLikeCount = row.findViewById<TextView>(R.id.txtLikeCount)
+        val txtHateCount = row.findViewById<TextView>(R.id.txtHateCount)
+
         txtReplyContent.text = data.content
         txtWriteNickname.text = data.writer.nickname
         txtSelectedSide.text = "[${data.selectedSide.title}]"
+
+        txtReReplyCount.text = "답금 ${data.reReplyCount}"
+        txtLikeCount.text = "좋아요 ${data.likeCount}"
+        txtHateCount.text = "실어요 ${data.hateCount}"
 
         return row
     }

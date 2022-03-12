@@ -10,6 +10,11 @@ class ReplyData(
 
     var selectedSide = SideData()
 
+//    답글 / 좋아요/ 싫어요 갯수
+    var reReplyCount = 0
+    var likeCount = 0
+    var hateCount = 0
+
 //    보조 생성자 추가 연습 : 파라미터 X
     constructor() : this(0, "내용없음")
 
@@ -23,6 +28,11 @@ class ReplyData(
             replyData.writer = UserData.getSideDataFromJson(jsonObj.getJSONObject("user"))
 
             replyData.selectedSide = SideData.getSideDataFromJson(jsonObj.getJSONObject("selected_side"))
+
+
+            replyData.reReplyCount = jsonObj.getInt("reply_count")
+            replyData.likeCount = jsonObj.getInt("like_count")
+            replyData.hateCount = jsonObj.getInt("dislike_count")
 
             return replyData
         }
