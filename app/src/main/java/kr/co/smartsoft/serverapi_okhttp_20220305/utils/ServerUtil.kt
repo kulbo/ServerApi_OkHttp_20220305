@@ -283,10 +283,10 @@ class ServerUtil {
         }
 
 
-        fun postRequestReplyLike(context: Context, replyId:Int, isLike:Boolean, handler: JsonResponseHandler?) {
+        fun postRequestReplyLikeOrHate(context: Context, replyId:Int, isLike:Boolean, handler: JsonResponseHandler?) {
             val urlString = "${BASE_URL}/topic_reply_like"
             val formData = FormBody.Builder()
-                .add("side_id", replyId.toString())
+                .add("reply_id", replyId.toString())
                 .add("is_like", isLike.toString())
                 .build()
             val request = Request.Builder()

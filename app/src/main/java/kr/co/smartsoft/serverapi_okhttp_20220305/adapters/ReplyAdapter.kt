@@ -8,6 +8,8 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import kr.co.smartsoft.serverapi_okhttp_20220305.R
 import kr.co.smartsoft.serverapi_okhttp_20220305.datas.ReplyData
+import kr.co.smartsoft.serverapi_okhttp_20220305.utils.ServerUtil
+import org.json.JSONObject
 
 class ReplyAdapter(
     val mContext : Context,
@@ -41,6 +43,21 @@ class ReplyAdapter(
         txtLikeCount.text = "좋아요 ${data.likeCount}"
         txtHateCount.text = "실어요 ${data.hateCount}"
 
+        txtLikeCount.setOnClickListener {
+
+//            서버에 이 뎃글에 좋아요 알림.
+            ServerUtil.postRequestReplyLikeOrHate(
+                mContext,
+                data.id,
+                true,
+                object :ServerUtil.JsonResponseHandler {
+                    override fun onResponse(jsonObject: JSONObject) {
+
+                    }
+
+                }
+            )
+        }
         return row
     }
 
