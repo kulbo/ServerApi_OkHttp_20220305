@@ -20,7 +20,8 @@ class TopicData: Serializable {
 //            기본 내용의 TopicData 생성
             val topicData = TopicData()
             topicData.id = jsonObj.getInt("id")
-            topicData.title = jsonObj.getString("img_url")
+            topicData.title = jsonObj.getString("title")
+            topicData.imageURL = jsonObj.getString("img_url")
             topicData.replyCount = jsonObj.getInt("reply_count")
 
 //          sides라는 JSONArray가 들어있음.
