@@ -13,9 +13,9 @@
             </item>
             <item
                 android:top="1dp"
-                android:bottom="1dp"
-                android:start="1dp"
-                android:end="1dp">
+                android:left="1dp"
+                android:right="1dp"
+                android:bottom="1dp">
                 <shape
                     android:shape="rectangle">
                     <solid
@@ -25,30 +25,6 @@
         </layer-list>
 
     </item>
-
-    <item
-        android:state_pressed="true">
-        <layer-list>
-            <item>
-                <shape
-                    android:shape="rectangle">
-                    <solid
-                        android:color="@color/naver_red" />
-                </shape>
-
-            </item>
-
-            <item
-                android:top="1dp"
-                android:bottom="1dp"
-                android:start="1dp"
-                android:end="1dp">
-
-            </item>
-        </layer-list>
-
-    </item>
-
 
 
 </selector>
