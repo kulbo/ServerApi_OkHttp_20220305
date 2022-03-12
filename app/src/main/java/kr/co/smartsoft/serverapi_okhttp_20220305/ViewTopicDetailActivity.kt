@@ -89,7 +89,8 @@ class ViewTopicDetailActivity : BaseActivity() {
 //***
         setTopicDataToUi()
 
-        getTopicDetailFromServer()
+//        onResume 에서 실행되기 때문에 막음.
+//        getTopicDetailFromServer()
 
     }
 
@@ -139,6 +140,10 @@ class ViewTopicDetailActivity : BaseActivity() {
                 runOnUiThread {
                     setTopicDataToUi()
                 }
+
+//              mReplyList에 댓들목록이 추가된다.
+//
+                mReplyList.clear()
 
 //***            뎃글 표시 데이터 작업 마지막부분
 //                topicObj 내부에는 replies 라는 뎃글 목록 JSONArray 도 들어있아.
