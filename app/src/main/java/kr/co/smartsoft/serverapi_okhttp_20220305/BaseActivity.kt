@@ -1,6 +1,8 @@
 package kr.co.smartsoft.serverapi_okhttp_20220305
 
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 
 abstract class BaseActivity : AppCompatActivity() {
 //    Context 계열의 파라미터에 대입할때, 보통 this 로 대입
@@ -12,4 +14,17 @@ abstract class BaseActivity : AppCompatActivity() {
     abstract fun setupEvents()
     abstract fun setValues()
 
+//    실제 구현 내용을 같이 물려주는 함수
+//    액션바 설저 기능
+    fun setCustomActionBar(){
+        //        임시 테스트 > 액션바 커스텀 모드
+        val defaultActionBar = supportActionBar!!
+        defaultActionBar.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM
+
+        defaultActionBar.setCustomView(R.layout.my_custom_action_bar)
+
+        val toolbar = defaultActionBar.customView.parent as Toolbar
+        toolbar.setContentInsetsAbsolute(0,0)
+
+    }
 }
