@@ -48,7 +48,7 @@ class EditReplyActivity : BaseActivity() {
                                 finish()
                             }
                             else {
-                                val message = jsonObj.getString("messge")
+                                val message = jsonObj.getString("message")
                                 Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show()
                             }
                         }
