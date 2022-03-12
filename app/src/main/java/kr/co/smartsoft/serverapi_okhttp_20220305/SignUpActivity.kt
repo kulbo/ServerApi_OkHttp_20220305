@@ -87,6 +87,12 @@ class SignUpActivity : BaseActivity() {
 
         }
         binding.btnSignUp.setOnClickListener {
+
+//            [도전과제] 이메일 - @가 반드시 포함되어야함. 비밀번호 - 8자리 이상이어야함. 닉네임 - 2자 이상.
+//            [도전과제] 만약 이메일 / 닉네임 중복검사를 통과하지 못하면
+//            토스트로 "이메일 중복검사를 통과해야 합니다." 등의 문구만 출력, 가입 진행 X
+//            hint) 진행할 상황이 아니라면, return 처리 하면 함수 종료
+
             val inputEmail = binding.edtEmail.text.toString()
             val inputPw = binding.edtPassword.text.toString()
             val inputNickname = binding.edtNickname.text.toString()

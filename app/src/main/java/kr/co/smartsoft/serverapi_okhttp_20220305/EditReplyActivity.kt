@@ -25,6 +25,7 @@ class EditReplyActivity : BaseActivity() {
     }
     override fun setupEvents() {
         binding.btnPostReply.setOnClickListener {
+//            앱에서 검사 > 입력문구가 5자 미만이면 토스트, 함수 강제종료
             val inputContent = binding.edtReplyContent.text.toString()
 
             if(inputContent.length < 5) {
