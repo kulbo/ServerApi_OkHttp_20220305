@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import kr.co.smartsoft.serverapi_okhttp_20220305.R
 import kr.co.smartsoft.serverapi_okhttp_20220305.ViewTopicDetailActivity
 import kr.co.smartsoft.serverapi_okhttp_20220305.datas.ReplyData
@@ -64,6 +65,16 @@ class ReplyAdapter(
 
                 }
             )
+        }
+
+//      [도전과제]  싫어요가 눌려도 마찬가지 처리 => 싫어요 API 호출(기존함수 활용) + 토론 상세화면 댓들 목록 새로고침
+
+//        좋아요가 눌렸는지, 아닌지, 글씨 색상 변경.
+        if (data.isMyLike) {
+            txtLikeCount.setTextColor(ContextCompat.getColor(mContext, R.color.naver_red))
+        }
+        else {
+            txtLikeCount.setTextColor(ContextCompat.getColor(mContext, R.color.deep_dark_gray))
         }
         return row
     }
