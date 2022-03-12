@@ -67,6 +67,28 @@ class ReplyAdapter(
             )
         }
 
+        txtHateCount.setOnClickListener {
+
+//            서버에 이 뎃글에 좋아요 알림.
+            ServerUtil.postRequestReplyLikeOrHate(
+                mContext,
+                data.id,
+                false,
+                object :ServerUtil.JsonResponseHandler {
+                    override fun onResponse(jsonObject: JSONObject) {
+//                        무조건 댓글 목록을 새로 고침
+//                        Adapter 에서 액티비티의 기능 실행
+//                        어댑터 객체화시 mContext 변수에 어느 화면에서 사용하는지 대입.
+//                        mContext : Context 타입. 대입 객체 : ViewTopic 액티비티 객체 => 다형성
+//                        부모 형태의 변숭에 담긴 자식 객체는 캐스팅을 통해서 원상 복구 사능.
+
+                        (mContext as ViewTopicDetailActivity).getTopicDetailFromServer()
+                    }
+
+                }
+            )
+        }
+
 //      [도전과제]  싫어요가 눌려도 마찬가지 처리 => 싫어요 API 호출(기존함수 활용) + 토론 상세화면 댓들 목록 새로고침
 
 //        좋아요가 눌렸는지, 아닌지, 글씨 색상 변경.
@@ -78,6 +100,16 @@ class ReplyAdapter(
             txtLikeCount.setTextColor(ContextCompat.getColor(mContext, R.color.deep_dark_gray))
             txtLikeCount.setBackgroundResource(R.drawable.dark_gray_border_box)
         }
+
+        if (data.isMyHate) {
+            txtHateCount.setTextColor(ContextCompat.getColor(mContext, R.color.naver_red))
+            txtHateCount.setBackgroundResource(R.drawable.naver_red_border_box)
+        }
+        else {
+            txtHateCount.setTextColor(ContextCompat.getColor(mContext, R.color.deep_dark_gray))
+            txtHateCount.setBackgroundResource(R.drawable.dark_gray_border_box)
+        }
+
         return row
     }
 
