@@ -13,7 +13,7 @@ class EditReplyActivity : BaseActivity() {
 
     lateinit var binding : ActivityEditReplyBinding
 
-//    어느 토론 주제에서 온건지 무조건 선택한 진영도 있다.
+//    어느 토론 주제에서 온건지 + 무조건 선택한 진영도 있다.
     lateinit var mTopicData : TopicData
 
     override fun onCreate(savedInstanceState: Bundle?) {
