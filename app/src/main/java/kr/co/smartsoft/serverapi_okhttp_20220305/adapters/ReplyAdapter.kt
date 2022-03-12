@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import kr.co.smartsoft.serverapi_okhttp_20220305.R
+import kr.co.smartsoft.serverapi_okhttp_20220305.ViewTopicDetailActivity
 import kr.co.smartsoft.serverapi_okhttp_20220305.datas.ReplyData
 import kr.co.smartsoft.serverapi_okhttp_20220305.utils.ServerUtil
 import org.json.JSONObject
@@ -52,7 +53,13 @@ class ReplyAdapter(
                 true,
                 object :ServerUtil.JsonResponseHandler {
                     override fun onResponse(jsonObject: JSONObject) {
+//                        무조건 댓글 목록을 새로 고침
+//                        Adapter 에서 액티비티의 기능 실행
+//                        어댑터 객체화시 mContext 변수에 어느 화면에서 사용하는지 대입.
+//                        mContext : Context 타입. 대입 객체 : ViewTopic 액티비티 객체 => 다형성
+//                        부모 형태의 변숭에 담긴 자식 객체는 캐스팅을 통해서 원상 복구 사능.
 
+                        (mContext as ViewTopicDetailActivity).getTopicDetailFromServer()
                     }
 
                 }
