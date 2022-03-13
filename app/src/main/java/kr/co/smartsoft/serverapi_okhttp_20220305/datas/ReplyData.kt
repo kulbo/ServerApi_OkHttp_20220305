@@ -1,6 +1,7 @@
 package kr.co.smartsoft.serverapi_okhttp_20220305.datas
 
 import org.json.JSONObject
+import java.text.SimpleDateFormat
 import java.util.*
 
 class ReplyData(
@@ -47,9 +48,17 @@ class ReplyData(
             replyData.isMyHate = jsonObj.getBoolean("my_dislike")
 //          Calendar로 되어 있는 작성일시의 시간을 서버가 알려주는 뎃글 작성 일시로 맟춰저야함.
 //            임시1) 2022-01-12
-            replyData.createdAt.set(2022, Calendar.JANUARY, 12, 10,55,35)
+//            replyData.createdAt.set(2022, Calendar.JANUARY, 12, 10,55,35)
 //            임시2) 연도만 2021년으로 변경(항목)
-            replyData.createdAt.set(Calendar.YEAR, 2021)
+//            replyData.createdAt.set(Calendar.YEAR, 2021)
+//          createAt 변수의 일시 값으로 => parse 결과물 사용.
+
+            val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+
+            val createdAtStr = jsonObj.getString("created_at")
+
+//            createdAtStr 변수를 => Data로 변경 (parse) => Calendar의 time에 대입
+            replyData.createdAt.time = sdf.parse(createdAtStr)
 
             return replyData
         }
