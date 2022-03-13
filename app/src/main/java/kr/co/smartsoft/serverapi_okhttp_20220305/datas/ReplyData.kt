@@ -1,6 +1,7 @@
 package kr.co.smartsoft.serverapi_okhttp_20220305.datas
 
 import org.json.JSONObject
+import java.util.*
 
 class ReplyData(
     var id : Int,
@@ -9,6 +10,10 @@ class ReplyData(
     var writer = UserData()
 
     var selectedSide = SideData()
+
+//    작성 일시를 담아둘 변수
+//    일시 데이터를 변경 => 내부의 숫자만 변경. 변수에 새 객체 대입 X. -> val로 써도 됨.
+    val createdAt = Calendar.getInstance()
 
 //    답글 / 좋아요/ 싫어요 갯수
     var reReplyCount = 0
@@ -34,13 +39,17 @@ class ReplyData(
 
             replyData.selectedSide = SideData.getSideDataFromJson(jsonObj.getJSONObject("selected_side"))
 
-
             replyData.reReplyCount = jsonObj.getInt("reply_count")
             replyData.likeCount = jsonObj.getInt("like_count")
             replyData.hateCount = jsonObj.getInt("dislike_count")
 
             replyData.isMyLike = jsonObj.getBoolean("my_like")
             replyData.isMyHate = jsonObj.getBoolean("my_dislike")
+//          Calendar로 되어 있는 작성일시의 시간을 서버가 알려주는 뎃글 작성 일시로 맟춰저야함.
+//            임시1) 2022-01-12
+            replyData.createdAt.set(2022, 1, 12, 10,55,35)
+//            임시2) 연도만 2021년으로 변경(항목)
+            replyData.createdAt.set(Calendar.YEAR, 2021)
 
             return replyData
         }
