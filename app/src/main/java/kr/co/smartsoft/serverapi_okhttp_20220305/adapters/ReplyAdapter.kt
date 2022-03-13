@@ -1,6 +1,7 @@
 package kr.co.smartsoft.serverapi_okhttp_20220305.adapters
 
 import android.content.Context
+import android.icu.util.Calendar
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,6 +33,7 @@ class ReplyAdapter(
         val txtSelectedSide = row.findViewById<TextView>(R.id.txtSelectedSide)
         val txtWriteNickname = row.findViewById<TextView>(R.id.txtWriterNickname)
         val txtReplyContent = row.findViewById<TextView>(R.id.txtReplyContent)
+        val txtCreatedAt = row.findViewById<TextView>(R.id.txtCreatedAt)
 
         val txtReReplyCount = row.findViewById<TextView>(R.id.txtReReplyCount)
         val txtLikeCount = row.findViewById<TextView>(R.id.txtLikeCount)
@@ -40,6 +42,9 @@ class ReplyAdapter(
         txtReplyContent.text = data.content
         txtWriteNickname.text = data.writer.nickname
         txtSelectedSide.text = "[${data.selectedSide.title}]"
+
+        // 임시로 = 작성일만 "2022-03-10" 형태로 표현. => 연 / 월 / 일 데이터로 가공
+        txtCreatedAt.text = "${data.createdAt.get(Calendar.YEAR)}-${data.createdAt.get(Calendar.MONTH) + 1}-${data.createdAt.get(Calendar.DAY_OF_MONTH)}"
 
         txtReReplyCount.text = "답금 ${data.reReplyCount}"
         txtLikeCount.text = "좋아요 ${data.likeCount}"
