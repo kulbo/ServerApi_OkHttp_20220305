@@ -55,10 +55,10 @@ class ReplyAdapter(
 //        val sdf = java.text.SimpleDateFormat("yy.MM.dd")
 //        val sdf = java.text.SimpleDateFormat("yyyy년 MM월 dd일")
 //        val sdf = java.text.SimpleDateFormat("M월 d일 a h시 m분")
-        val sdf = java.text.SimpleDateFormat("yy년 M/d(E) HH:mm")
+//        val sdf = java.text.SimpleDateFormat("yy년 M/d(E) HH:mm")
 
 //        createdAt : Calendar/ format의 파라미터:Date => Calendar의 내용물인 time변수가 Date.
-        txtCreatedAt.text = sdf.format(data.createdAt.time)
+        txtCreatedAt.text = data.getFormattedCreatedAt()
 
         txtReReplyCount.text = "답금 ${data.reReplyCount}"
         txtLikeCount.text = "좋아요 ${data.likeCount}"
