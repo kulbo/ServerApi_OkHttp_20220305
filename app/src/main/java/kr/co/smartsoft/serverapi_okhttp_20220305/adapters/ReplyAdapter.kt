@@ -1,6 +1,7 @@
 package kr.co.smartsoft.serverapi_okhttp_20220305.adapters
 
 import android.content.Context
+import android.icu.text.SimpleDateFormat
 import android.icu.util.Calendar
 import android.view.LayoutInflater
 import android.view.View
@@ -44,7 +45,20 @@ class ReplyAdapter(
         txtSelectedSide.text = "[${data.selectedSide.title}]"
 
         // 임시로 = 작성일만 "2022-03-10" 형태로 표현. => 연 / 월 / 일 데이터로 가공
-        txtCreatedAt.text = "${data.createdAt.get(Calendar.YEAR)}-${data.createdAt.get(Calendar.MONTH) + 1}-${data.createdAt.get(Calendar.DAY_OF_MONTH)}"
+//        txtCreatedAt.text = "${data.createdAt.get(Calendar.YEAR)}-${data.createdAt.get(Calendar.MONTH) + 1}-${data.createdAt.get(Calendar.DAY_OF_MONTH)}"
+//
+//        연습
+//        양식 1) 2022년 3월 5일
+//        양식 2) 220304
+//        양식 3) 3월 5일 오전 2시 5분
+
+//        val sdf = java.text.SimpleDateFormat("yy.MM.dd")
+//        val sdf = java.text.SimpleDateFormat("yyyy년 MM월 dd일")
+//        val sdf = java.text.SimpleDateFormat("M월 d일 a h시 m분")
+        val sdf = java.text.SimpleDateFormat("yy년 M/d(E) HH:mm")
+
+//        createdAt : Calendar/ format의 파라미터:Date => Calendar의 내용물인 time변수가 Date.
+        txtCreatedAt.text = sdf.format(data.createdAt.time)
 
         txtReReplyCount.text = "답금 ${data.reReplyCount}"
         txtLikeCount.text = "좋아요 ${data.likeCount}"
